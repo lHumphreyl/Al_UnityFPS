@@ -16,13 +16,15 @@ namespace FPS
 		private void Start()
 		{
 			_currentAmmo = _maxClipAmmo;
+			Animator = GetComponentInChildren<Animator> ();
 		}
 
 		public override void Fire ()
 		{
-			if (!CanFire())
+			if (!CanFire() || Animator.GetBool("isReloading"))
 				return;
 
+			Animator.SetBool ("isShooting", true);
 			var bullet = Instantiate (_ammoPrefab);
 			bullet.Initialize (_shotSpawn, _force);
 
@@ -37,15 +39,17 @@ namespace FPS
 
 		public override void Reload ()
 		{
-			if (_currentAmmo == _maxClipAmmo)
+			if (_currentAmmo == _maxClipAmmo || Animator.GetBool("isShooting"))
 				return;
+
+			Animator.SetBool ("isReloading", true);
 
 			if (_additionalAmmo >= (_maxClipAmmo - _currentAmmo)) 
 			{
 				_additionalAmmo -= (_maxClipAmmo - _currentAmmo);
 				_currentAmmo += (_maxClipAmmo - _currentAmmo);
-			}
-			else if(_additionalAmmo < (_maxClipAmmo - _currentAmmo))
+			} 
+			else if (_additionalAmmo < (_maxClipAmmo - _currentAmmo)) 
 			{
 				_currentAmmo += _additionalAmmo;
 				_additionalAmmo = 0;

@@ -43,7 +43,7 @@ namespace FPS
 		/// Основной режим выбранного оружия.
 		/// </summary>
 		/// <param name="AltFire">If set to <c>true</c> alternate fire.</param>
-		public void Fire(bool AltFire = false)
+		public void Fire()
 		{
 			if (_weapons.Length > _currentWeapon && _weapons [_currentWeapon]) 
 					_weapons [_currentWeapon].Fire ();
