@@ -39,7 +39,7 @@ namespace FPS
 
 		public override void Reload ()
 		{
-			if (_currentAmmo == _maxClipAmmo || Animator.GetBool("isShooting"))
+			if (_currentAmmo == _maxClipAmmo || Animator.GetBool("isShooting") || _additionalAmmo == 0)
 				return;
 
 			Animator.SetBool ("isReloading", true);

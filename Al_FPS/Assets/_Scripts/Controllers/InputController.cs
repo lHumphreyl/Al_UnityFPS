@@ -25,6 +25,9 @@ namespace FPS
 
 			if (Input.GetButtonDown ("SwitchToNextWeapon"))
 				Main.Instance.WeaponController.ChangeWeapon ();
+
+			if (Input.GetButtonDown ("TeammateCommand"))
+				Main.Instance.TeammatesController.MoveCommand ();
         }
     }
 }
