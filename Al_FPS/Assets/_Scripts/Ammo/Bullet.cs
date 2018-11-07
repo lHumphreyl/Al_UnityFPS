@@ -40,9 +40,9 @@ namespace FPS
 				_isHitted = true;
 				transform.position = hit.point;
 
-				var rb = hit.collider.GetComponent<Rigidbody> ();
-				if (rb)
-					rb.AddForce (transform.forward * _bulletSpeed, ForceMode.Impulse);
+				//var rb = hit.collider.GetComponent<Rigidbody> ();
+				//if (rb)
+				//	rb.AddForce (transform.forward * _bulletSpeed, ForceMode.Impulse);
 
 				var enemy = hit.collider.GetComponent<IDamageable> ();
 				if (enemy != null)

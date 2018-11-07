@@ -7,30 +7,35 @@ namespace FPS
 	public class Box : BaseSceneObject, IDamageable
 	{
 		[SerializeField]
-		private float _health = 100f;
-
-		[SerializeField]
 		private float _armor = 0f;
 
-		public float Health { get { return _health; } }
+		[SerializeField]
+		private float _currentHealth = 100f;
+		[SerializeField]
+		private float _maxHealth = 100f;
+
+		public bool IsAlive {	get	{	return _currentHealth > 0;	}	}
+		public float MaxHealth {	get {	return _maxHealth;	}	}
+		public float CurrentHealth {	get {	return _currentHealth;	}	}
+
 
 		public void ApplyDamage(float damage)
 		{
-			if (Health <= 0f)
+			if (!IsAlive)
 				return;
 
 			if (_armor <= 0f) 
 			{
-				_health -= damage;
+				_currentHealth -= damage;
 				Color = Random.ColorHSV ();
 			} 
 			else 
 			{
-				_health -= damage / _armor;
+				_currentHealth -= damage / _armor;
 				Color = Random.ColorHSV ();
 			}
 
-			if (Health <= 0f)
+			if (IsAlive)
 				Die ();
 		}
 
